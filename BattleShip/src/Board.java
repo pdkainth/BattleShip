@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Board {
 
@@ -7,8 +8,8 @@ public class Board {
 	private final String HIT = "X";
 	private final String MISS = "O";
 	
-	
-	
+
+	Random r = new Random();
 	
 	public Board() {
 		for(int row = 0; row < board.length; row++) {
@@ -20,7 +21,7 @@ public class Board {
 	
 	public void printBoard() {
 		System.out.print("  ");
-		for(char row = 'a'; row < 'k'; row++) {
+		for(int row = 0; row < SIDE; row++) {
 			System.out.print(row + " ");
 		}
 		System.out.println();
@@ -35,10 +36,15 @@ public class Board {
 	}
 	
 	public boolean alreadyChosen(int row, int col) {
-		if(board[row][col] == "-") {
-			return false;
-		} else {
+		try {
+			if(board[row][col] == "-" || board[row][col] == "S") {
+				return false;
+			} else {
+				return true;
+			}
+		}catch(Exception e) {
 			return true;
+			
 		}
 	}
 	
@@ -49,6 +55,39 @@ public class Board {
 	public void miss(int row, int col) {
 		board[row][col] = MISS;
 	}
+	
+	public void placeShips() {
+		
+		for (int i = 0; i < 4; i++) {
+			int xpos = r.nextInt(SIDE-1) + 1;
+			int ypos = r.nextInt(SIDE-1) + 1;
+			
+			board[xpos][ypos] = "S";
+		}
+	}
+	
+	public void checkPosition(int x, int y) {
+		if (board[x][y] == "-") {
+			miss(x, y);
+		}
+		if (board[x][y] == "S") {
+			hit(x, y);
+		}
+	}
+	
+	public boolean winnerExists() {
+		for (int i = 0; i < SIDE; i++) {
+			for (int k = 0; k < SIDE; k++) {
+				if (board[i][k] == "S") {
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
+	
 	
 	
 }
