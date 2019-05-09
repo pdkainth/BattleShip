@@ -21,8 +21,8 @@ public class Tester {
 		while (!b.winnerExists()) {
 			System.out.print("Where would you like to hit?");
 
-			int xpos = in.nextInt();
 			int ypos = in.nextInt();
+			int xpos = in.nextInt();
 
 			
 			if (!b.alreadyChosen(xpos, ypos)) {
