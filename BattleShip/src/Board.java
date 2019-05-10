@@ -4,6 +4,7 @@ public class Board {
 
 	private final int SIDE = 10;
 	private String[][] board = new String[SIDE][SIDE];
+	private String[][] hiddenBoard = new String[SIDE][SIDE];
 	private final String EMPTY = " ";
 	private final String HIT = "X";
 	private final String MISS = "O";
@@ -11,9 +12,6 @@ public class Board {
 
 	Random r = new Random();
 	
-	/**
-	 *This method creates an instance of a Board object which sets up th game board for botht he player and the CPU.
-	 */
 	public Board() {
 		for(int row = 0; row < board.length; row++) {
 			for(int col = 0; col < board[row].length; col++) {
@@ -21,9 +19,7 @@ public class Board {
 			}
 		}
 	}
-	/**
-	 * Prints the board layout for both the player and CPU, with current layout
-	 */
+	
 	public void printBoard() {
 		System.out.print("  ");
 		for(int row = 0; row < SIDE; row++) {
@@ -39,14 +35,10 @@ public class Board {
 			System.out.println();
 		}
 	}
-	/**
-	 * @param row - row number of the board
-	 * @param col - column number of the board
-	 * @return boolean value for determining a taken space or an empty space
-	 */
+	
 	public boolean alreadyChosen(int row, int col) {
 		try {
-			if(board[row][col] == EMPTY || board[row][col] == "S") {
+			if(board[row][col] == EMPTY || hiddenBoard[row][col] == "S") {
 				return false;
 			} else {
 				return true;
@@ -57,59 +49,88 @@ public class Board {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param row - row number of the board
-	 * @param col - column number of the board
-	 */
 	public void hit(int row, int col) {
 		board[row][col] = HIT;
+		hiddenBoard[row][col] = "";
 	}
 	
-	/**
-	 * 
-	 * @param row - number of rows on the board
-	 * @param col - number of columns on the board
-	 */
 	public void miss(int row, int col) {
 		board[row][col] = MISS;
 	}
 	
-	/**
-	 * This method allows the user to place ships on the game board with user input
-	 */
 	public void placeShips() {
 		
+		int xpos = r.nextInt(SIDE-4) + 1;
+		int ypos = r.nextInt(SIDE-4) + 1;
+		
+		hiddenBoard[xpos][ypos] = "S";
+		
+		if (r.nextInt(2) + 1 == 1) {
+			hiddenBoard[xpos + 1][ypos] = "S";
+			hiddenBoard[xpos + 2][ypos] = "S";
+		}else {
+			hiddenBoard[xpos][ypos + 1] = "S";
+			hiddenBoard[xpos][ypos + 2] = "S";
+		}
+		
+		
+		xpos = r.nextInt(SIDE-6) + 1;
+		ypos = r.nextInt(SIDE-6) + 1;
+		
+		hiddenBoard[xpos][ypos] = "S";
+		
+		if (r.nextInt(2) + 1 == 1) {
+			hiddenBoard[xpos + 1][ypos] = "S";
+			hiddenBoard[xpos + 2][ypos] = "S";
+			hiddenBoard[xpos + 3][ypos] = "S";
+			hiddenBoard[xpos + 4][ypos] = "S";
+		}else {
+			hiddenBoard[xpos][ypos + 1] = "S";
+			hiddenBoard[xpos][ypos + 2] = "S";
+			hiddenBoard[xpos][ypos + 3] = "S";
+			hiddenBoard[xpos][ypos + 4] = "S";
+		}
+		
+
+		
+		xpos = r.nextInt(SIDE-1) + 1;
+		ypos = r.nextInt(SIDE-1) + 1;
+		hiddenBoard[xpos][ypos] = "S";
+		
+		
+		for (int i = 0; i < SIDE; i++) {
+			for (int k = 0; k < SIDE; k++) {
+				if (hiddenBoard[i][k] == null) {
+					hiddenBoard[i][k] = " ";
+				}
+				System.out.print(hiddenBoard[i][k] + " ");
+			}
+			System.out.println();
+		}
+		
+		/**
 		for (int i = 0; i < 4; i++) {
 			int xpos = r.nextInt(SIDE-1) + 1;
 			int ypos = r.nextInt(SIDE-1) + 1;
 			
-			board[xpos][ypos] = "S";
+			hiddenBoard[xpos][ypos] = "S";
 		}
+		*/
 	}
 	
-	/**
-	 * 
-	 * @param x - the position number for the column
-	 * @param y- the position number for the row
-	 */
 	public void checkPosition(int x, int y) {
 		if (board[x][y] == EMPTY) {
 			miss(x, y);
 		}
-		if (board[x][y] == "S") {
+		if (hiddenBoard[x][y] == "S") {
 			hit(x, y);
 		}
 	}
 	
-	/**
-	 * This method determines who the winner is by looping through every element of the board, checking for any ships remaining
-	 * @return - boolean value determining the existence of any remaining ships
-	 */
 	public boolean winnerExists() {
 		for (int i = 0; i < SIDE; i++) {
 			for (int k = 0; k < SIDE; k++) {
-				if (board[i][k] == "S") {
+				if (hiddenBoard[i][k] == "S") {
 					return false;
 				}
 			}
@@ -118,10 +139,6 @@ public class Board {
 		return true;
 	}
 	
-	/**
-	 * 
-	 * @return - an array of Strings determining spots taken by ships, spots that are empty, and spots that have been hit or miss
-	 */
 	public String[][] getBoard(){
 		return board;
 	}
@@ -130,4 +147,3 @@ public class Board {
 	
 	
 }
-
