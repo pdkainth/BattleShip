@@ -4,7 +4,7 @@ public class Board {
 
 	private final int SIDE = 10;
 	private String[][] board = new String[SIDE][SIDE];
-	private final String EMPTY = "-";
+	private final String EMPTY = " ";
 	private final String HIT = "X";
 	private final String MISS = "O";
 	
@@ -37,7 +37,7 @@ public class Board {
 	
 	public boolean alreadyChosen(int row, int col) {
 		try {
-			if(board[row][col] == "-" || board[row][col] == "S") {
+			if(board[row][col] == EMPTY || board[row][col] == "S") {
 				return false;
 			} else {
 				return true;
@@ -67,7 +67,7 @@ public class Board {
 	}
 	
 	public void checkPosition(int x, int y) {
-		if (board[x][y] == "-") {
+		if (board[x][y] == EMPTY) {
 			miss(x, y);
 		}
 		if (board[x][y] == "S") {
@@ -85,6 +85,10 @@ public class Board {
 		}
 		
 		return true;
+	}
+	
+	public String[][] getBoard(){
+		return board;
 	}
 	
 	
