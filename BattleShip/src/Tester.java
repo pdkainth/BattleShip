@@ -10,14 +10,16 @@ public class Tester{
 		
 		
 
-		b.printBoard();
-		System.out.println("Placing ships now");
+		//b.printBoard();
+		//System.out.println("Placing ships now");
 		b.placeShips();
-		b.printBoard();
+		//b.printBoard();
 		
 		
 		g.printBoard(b.getBoard());
-		Scanner in = new Scanner(System.in);
+		//Scanner in = new Scanner(System.in);
+		
+		
 				
 		/**
 		while (!b.winnerExists()) {
@@ -48,16 +50,20 @@ public class Tester{
 	public void GUIClick(int x, int y) {
 
 
-
+		
 
 		if (!b.alreadyChosen(x, y)) {
 			b.checkPosition(x, y);
 			g.printBoard(b.getBoard());
 		}else {
-			g.printMessage("You have already attacked that spot. Please choose another");
+			System.out.println("You have already attacked that spot. Please choose another");
 		}
 		
-		b.printBoard();
+		
+		
+		if (b.winnerExists()) {
+			System.out.println("CONGRATS YOU WIN");
+		}
 		
 		
 	}
