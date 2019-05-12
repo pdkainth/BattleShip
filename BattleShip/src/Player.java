@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Player extends Ships{
+public class Player{
 	
 	private String name;
 	private int turn;
@@ -13,26 +13,6 @@ public class Player extends Ships{
 		this.name = name;
 
 	}	
-	
-	public void setCarrier() {
-		
-	}
-	
-	public void setBattle() {
-		
-	}
-
-	public void setCruiser() {
-		
-	}
-
-	public void setSub() {
-		
-	}
-
-	public void setDestroyer() {
-		
-	}
 	
 	
 }
