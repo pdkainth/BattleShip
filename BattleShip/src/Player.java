@@ -1,19 +1,17 @@
 import java.util.*;
 
-public class Player{
+public abstract class Player{
 	
 	private String name;
-	private int turn;
-	private int numberShipsLeft;
-	Random r = new Random();
-	
-	
-	public Player(String name) {
-		super();
-		this.name = name;
 
+	public Player(String name) {
+		this.name = name;
 	}	
 	
+	public abstract void setShips();
 	
+	public String getName() {
+		return name;
+	}
 }
 

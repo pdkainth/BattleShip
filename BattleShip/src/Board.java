@@ -26,7 +26,7 @@ public class Board {
 		
 	}
 	
-	public void printBoard(String[][] board) {
+	public static void printBoard(String[][] board) {
 		System.out.print("  ");
 		for(int row = 0; row < board.length; row++) {
 			System.out.print(row + " ");

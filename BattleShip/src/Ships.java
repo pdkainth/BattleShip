@@ -48,6 +48,21 @@ public class Ships {
 		return false;
 	}
 	
+	public int[][] getCoordinates(){
+		return coordinates;
+	}
+	
+	public String getID() {
+		return name.charAt(0) + "";
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public int getLength() {
+		return length;
+	}
 
 }
 
