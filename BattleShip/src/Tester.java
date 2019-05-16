@@ -5,18 +5,21 @@ public class Tester{
 	static Board b;
 	static GUI g;
 	public static void main(String args[]) {
-		b = new Board();
-		g = new GUI();
+		//b = new Board();
+		//g = new GUI();
+		
+		PlayerPerson p = new PlayerPerson("Me");
+		
 		
 		
 
 		//b.printBoard();
 		//System.out.println("Placing ships now");
-		b.placeShips();
+		//b.placeShips();
 		//b.printBoard();
 		
 		
-		g.printBoard(b.getBoard());
+		//g.printBoard(b.getBoard());
 		//Scanner in = new Scanner(System.in);
 		
 		
@@ -47,7 +50,7 @@ public class Tester{
 
 	}
 	
-	public void GUIClick(int x, int y) {
+	/*public void GUIClick(int x, int y) {
 
 
 		
@@ -58,15 +61,17 @@ public class Tester{
 		}else {
 			System.out.println("You have already attacked that spot. Please choose another");
 		}
+*/		
 		
 		
+//		if (b.winnerExists()) {
+//			System.out.println("CONGRATS YOU WIN");
+//		}
 		
-		if (b.winnerExists()) {
-			System.out.println("CONGRATS YOU WIN");
-		}
-		
-		
+
+	
+	
 	}
 	
 	
-}
+

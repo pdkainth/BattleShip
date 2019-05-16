@@ -1,39 +1,63 @@
 import java.util.Scanner;
 
+
 public class PlayerPerson extends Player {
 	
 	private VisibleBoard personVisible = new VisibleBoard();
 	private HiddenBoard personHidden = new HiddenBoard();
-	private Ships carrier = new Ships("Carrier", 4);
-	private Ships cruiser = new Ships("Cruiser", 3);
-	private Ships destroyer = new Ships("Destroyer", 2);
+	private Ships carrier = new Ships("Carrier", 5);
+	private Ships submarine = new Ships("Submarine", 4);
+	private Ships destroyer = new Ships("Destroyer", 3);
 	private Scanner in = new Scanner(System.in);
 	
 	public PlayerPerson(String name) {
 		super(name);
+		setShips();
 	}
 	
 	public void setOneShip(Ships s) {
-		Board.printBoard(personHidden.getHidden());
-		System.out.print("Enter the starting x coordinates for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
-		int col = getValidX();
+		System.out.print("Enter the starting column for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
+		int row = getValid();
 		
-		System.out.print("Enter the starting y coordinates for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
-		int row = getValidY();
+		System.out.print("Enter the starting row for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
+		int col = getValid();
 		
 		while(!(personHidden.isValidStarting(row, col))) {
 			System.out.println("Invalid starting coordinate, this spot has already been taken.");
 
-			System.out.print("Please enter another starting x coordinate for the " + s.getName() + " --> ");
-			col = getValidX();
+			System.out.print("Please enter another starting column for the " + s.getName() + " --> ");
+			row = getValid();
 
-			System.out.print("Please enter another starting y coordinate for the " + s.getName() + " --> ");
-			row = getValidY();
+			System.out.print("Please enter another starting row for the " + s.getName() + " --> ");
+			col = getValid();
 
 		}
 		
 		System.out.print("Please choose the direction for the " + s.getName() + " (up, down, left, or right) --> ");
-		String dir = get
+		String dir = getValidDirection();
+		
+		while(!(personHidden.isValidDirection(row, col, s.getLength(), dir))) {
+			System.out.println("Invalid direction, ship will not fit.");
+			
+			System.out.print("Pease enter another direction --> ");
+			dir = getValidDirection();
+		}
+		
+		s.setShipCoordinate(col, row, dir);
+		setShipHidden(s.getCoordinates(), s.getID());
+		Board.printBoard(personHidden.getHidden());
+
+		
+	}
+	
+	public void setShips() {
+		Board.printBoard(personHidden.getHidden());
+		System.out.println();
+		setOneShip(carrier);
+		System.out.println();
+		setOneShip(submarine);
+		System.out.println();
+		setOneShip(destroyer);
 		
 	}
 	
@@ -43,36 +67,36 @@ public class PlayerPerson extends Player {
 		}
 	}
 	
-	private int getValidY() {
-		String test = in.next();
-		test = test.toLowerCase();
-		boolean valid = true;
-		
-		if(test.compareTo("a") < 0 || test.compareTo("j") > 0) {
-			valid = false;
-		} else {
-			valid = true;
-		}
-		
-		String test1 = test;
-		while(!valid) {
-			System.out.print("Invalid coordinate, enter a valid coordinate from a to j--> ");
-			
-			test1 = in.next();
-			if(test1.compareTo("a") < 0 || test1.compareTo("j") > 0) {
-				valid = false;
-			} else {
-				valid = true;
-			}
-
-		}
-		
-		char testChar = test1.charAt(0);
-		
-		return (testChar - 'a');
-	}
+//	private int getValidY() {
+//		String test = in.next();
+//		test = test.toLowerCase();
+//		boolean valid = true;
+//		
+//		if(test.compareTo("a") < 0 || test.compareTo("j") > 0) {
+//			valid = false;
+//		} else {
+//			valid = true;
+//		}
+//		
+//		String test1 = test;
+//		while(!valid) {
+//			System.out.print("Invalid coordinate, enter a valid coordinate from a to j--> ");
+//			
+//			test1 = in.next();
+//			if(test1.compareTo("a") < 0 || test1.compareTo("j") > 0) {
+//				valid = false;
+//			} else {
+//				valid = true;
+//			}
+//
+//		}
+//		
+//		char testChar = test1.charAt(0);
+//		
+//		return (testChar - 'a');
+//	}
 	
-	private int getValidX() {
+	private int getValid() {
 		int test = in.nextInt();
 		boolean valid = true;
 		
@@ -82,12 +106,12 @@ public class PlayerPerson extends Player {
 			valid = true;
 		}
 		
-		int test1 = test;
+		
 		while(!valid) {
 			System.out.print("Invalid coordinate, enter a valid coordinate from 0 to 9--> ");
 			
-			test1 = in.nextInt();
-			if(test1 < 0 || test1 > 9) {
+			test = in.nextInt();
+			if(test < 0 || test > 9) {
 				valid = false;
 			} else {
 				valid = true;
@@ -95,12 +119,38 @@ public class PlayerPerson extends Player {
 
 		}
 		
-		return test1;
+		return test;
 	}
 	
 	private String getValidDirection() {
+		String dir = in.next();
+		dir = dir.toLowerCase();
 		
+		boolean valid = (dir.equals("right")) || (dir.equals("left")) || (dir.equals("up")) || (dir.equals("down"));
+		
+		while(!valid) {
+			System.out.print("Invalid direction, please enter left, right, up, or down --> ");
+
+			dir = in.next();
+			dir = dir.toLowerCase();
+			
+			valid = (dir.equals("right")) || (dir.equals("left")) || (dir.equals("up")) || (dir.equals("down"));
+
+		}
+		
+		return dir;
+	
 	}
+	
+	public Board getVisible() {
+		return personVisible;
+	}
+	
+	public Board getHidden() {
+		return personHidden;
+	}
+	
+	
 	
 	
 }

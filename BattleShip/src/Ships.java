@@ -10,29 +10,30 @@ public class Ships {
 		coordinates = new int[length][2];
 	}
 	
-	public void setShipCoordinate(int startX, int startY, String dir) {
-		for(int i = 0; i < length; i++) {
-			coordinates[0][0] = startX;
-			coordinates[0][1] = startY;
+	public void setShipCoordinate(int startRow, int startCol, String dir) {
+		coordinates[0][0] = startRow;
+		coordinates[0][1] = startCol;
+
+		for(int i = 1; i < length; i++) {
 			
-			if(dir.equals("u")) {
-				coordinates[i + 1][0] = coordinates[0][0];
-				coordinates[i + 1][1] = startY - i - 1;
+			if(dir.equals("up")) {
+				coordinates[i][0] = coordinates[0][0] - i;
+				coordinates[i][1] = coordinates[0][1];
 			}
 			
-			if(dir.equals("d")) {
-				coordinates[i + 1][0] = coordinates[0][0];
-				coordinates[i + 1][1] = startY + i + 1;
+			if(dir.equals("down")) {
+				coordinates[i][0] = coordinates[0][0] + i;
+				coordinates[i][1] = coordinates[0][1];
 			}
 			
-			if(dir.equals("l")) {
-				coordinates[i + 1][0] = startX - i - 1;
-				coordinates[i + 1][1] = coordinates[0][1];
+			if(dir.equals("left")) {
+				coordinates[i][0] = coordinates[0][0];
+				coordinates[i][1] = coordinates[0][1] - i;
 			}
 			
-			if(dir.equals("r")) {
-				coordinates[i + 1][0] = startX + i + 1;
-				coordinates[i + 1][1] = coordinates[0][1];
+			if(dir.equals("right")) {
+				coordinates[i][0] = coordinates[0][0];
+				coordinates[i][1] = coordinates[0][1] + i;
 			}
 			
 
