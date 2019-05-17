@@ -9,6 +9,7 @@ public class Tester{
 		//g = new GUI();
 		
 		PlayerPerson p = new PlayerPerson("Me");
+		ComputerPerson c = new ComputerPerson("Bob");
 		
 		
 		

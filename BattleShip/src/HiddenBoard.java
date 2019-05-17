@@ -44,7 +44,7 @@ public class HiddenBoard extends Board{
 		return false;
 	}
 	
-	public boolean isValidDirection(int r, int c, int length, String dir) {
+	public boolean isValidDirection(int c, int r, int length, String dir) {
 		String direction = dir.toLowerCase();
 		int dirCase = 0;
 		
