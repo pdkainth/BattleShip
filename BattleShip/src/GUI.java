@@ -130,7 +130,7 @@ public class GUI {
 		}
 		
 		
-		JLabel label = new JLabel("Please click the starting point of your " + s.getName() + " ship. It is " + s.getLength() + " squares long.");
+		JLabel label = new JLabel("Please click the starting/ending point of your " + s.getName() + " ship. It is " + s.getLength() + " squares long.");
 		label.setBounds(0, 465, 1000, 100);
 		
 		GUI.setPreferredSize(new Dimension(515,575));
