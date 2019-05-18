@@ -1,67 +1,90 @@
 import java.util.Scanner;
 
-public class PlayGame {
+
+public class PlayGameWithGui {
 	
-	private PlayerPerson p;
+	private PlayerPersonWithGui p;
 	private Scanner in = new Scanner(System.in);
 	private ComputerPerson c;
 	private int turn = 0;
+	private static GUI g = new GUI();
 	
-	public PlayGame() {
+	
+	public PlayGameWithGui() {
 		preGame();
 		currentGame();
+		
 	}
 	
 	public void preGame() {
-		System.out.println("Welcome to Battleship!");
-		System.out.println();
-		System.out.println("In this game, you will be playing against a computer and trying to hit its ships");
-		System.out.println();
-		System.out.println("Before we start playing the game, we need to set up your ships");
-		System.out.print("What do you want your name to be? ");
-		String name = in.next();
-		System.out.println();
-		p = new PlayerPerson(name);
+		
+		String name = g.preQuestions();
+		System.out.println(name);
+		//System.out.println("Welcome to Battleship!");
+		//System.out.println();
+		//System.out.println("In this game, you will be playing against a computer and trying to hit its ships");
+		//System.out.println();
+		//System.out.println("Before we start playing the game, we need to set up your ships");
+		//System.out.print("What do you want your name to be? ");
+		//String name = in.next();
+		//System.out.println();
+		p = new PlayerPersonWithGui(name);
 		c = new ComputerPerson("bot");
-		System.out.println("Now that you have seen your ships, you are ready to play. Good luck!");
+		
+		
+		
+		//System.out.println("Now that you have seen your ships, you are ready to play. Good luck!");
+		
 		
 	}
 	
 	public void currentGame() {
-		System.out.println("Your board: ");
-		p.printHidden();
-		System.out.println();
+		
+		
 		
 		System.out.println("\nYour opponents board: ");
 		c.printVisible();
 		System.out.println();
+
 		
 		while(!c.getHidden().hasWon() && !p.getHidden().hasWon()) {
-			onePersonTurn();
-			oneBotTurn();
+			String sbn = g.printBoard(p.getHiddenBoard(), c.getComputerVisibleBoard());
+			System.out.println("Input received");
+			onePersonTurn(Integer.parseInt(sbn)/10, Integer.parseInt(sbn)%10);
+			
+			if (turn % 2 == 1) {
+				oneBotTurn();
+			}
+			
 		}
 		
-		if(turn % 2 == 1) {
+		if(turn % 2 == 0) {
 			System.out.println("Congratulations, you've won!");
+			g.sendErrorMessage("Congratulations!!! You won!!!");
 		} else {
 			System.out.println("Better luck next time!");
+			g.sendErrorMessage("Better luck next time!");
 		}
 		
 	}
 	
-	private void onePersonTurn() {
+	public void onePersonTurn(int potentialRow, int potentialCol) {
 		turn++;
-		System.out.println("Where do you want to strike?");
-		int potentialRow = getRow();
-		int potentialCol = getCol();
+		//System.out.println("Where do you want to strike?");
+		//int potentialRow = getRow();
+		//int potentialCol = getCol();
 		
 		boolean already = c.getVisible().alreadyShot(potentialRow, potentialCol);
 		
 		while(already) {
+			/**
 			System.out.println("You have already attemted to strike at this point, please pick another point.");
 			potentialRow = getRow();
 			potentialCol = getCol();
 			already = c.getVisible().alreadyShot(potentialRow, potentialCol);
+			*/
+			turn--;
+			return;
 		}
 		
 		boolean hit = c.getHidden().didHit(potentialRow, potentialCol);
@@ -140,6 +163,6 @@ public class PlayGame {
 	
 	
 	public static void main(String args[]) {
-		PlayGame pg = new PlayGame();
+		PlayGameWithGui pg = new PlayGameWithGui();
 	}
 }

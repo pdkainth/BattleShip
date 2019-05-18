@@ -151,6 +151,10 @@ public class ComputerPerson extends Player {
 		Board.printBoard(personVisible.getBoard());
 	}
 	
+	public String[][] getComputerVisibleBoard(){
+		return personVisible.getBoard();
+	}
+	
 	
 	
 }

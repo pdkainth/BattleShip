@@ -31,6 +31,7 @@ public class HiddenBoard extends Board{
 	}
 	
 	public boolean hasWon() {
+		/**
 		boolean won = true;
 		
 		for(int row = 0; row < hidden.length; row++) {
@@ -42,7 +43,20 @@ public class HiddenBoard extends Board{
 		}
 		
 		return won;
+		*/
 		
+		int counter = 0;
+		for (int row = 0; row < hidden.length; row++) {
+			for (int col = 0; col < hidden[row].length; col++) {
+				if (hidden[row][col].equals(HIT)) {
+					counter++;
+				}
+			}
+		}
+		if (counter == 12) {
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean isValidStarting(int r, int c) {

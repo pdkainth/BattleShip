@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class PlayerPerson extends Player {
+public class PlayerPersonWithGui extends Player {
 	
 	private VisibleBoard personVisible = new VisibleBoard();
 	private HiddenBoard personHidden = new HiddenBoard();
@@ -9,20 +9,30 @@ public class PlayerPerson extends Player {
 	private Ships submarine = new Ships("Submarine", 4);
 	private Ships destroyer = new Ships("Destroyer", 3);
 	private Scanner in = new Scanner(System.in);
+	GUI b = new GUI();
 	
-	public PlayerPerson(String name) {
+	public PlayerPersonWithGui(String name) {
 		super(name);
+		
 		setShips();
 	}
 	
 	public void setOneShip(Ships s) {
+
+		String sn = b.setShip(s, personHidden.getHidden());
+		System.out.println("Running");
+		int row = Integer.valueOf(sn)/10;
+		int col = Integer.valueOf(sn)%10;
+		System.out.println("Stage 1");
+		System.out.println(row);
+		/**
 		System.out.print("Enter the starting column for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
 		int row = getValid();
 		
 		System.out.print("Enter the starting row for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
 		int col = getValid();
-		
-		while(!(personHidden.isValidStarting(col, row))) {
+		*/
+		while(!(personHidden.isValidStarting(row, col))) {
 			System.out.println("Invalid starting coordinate, this spot has already been taken.");
 
 			System.out.print("Please enter another starting column for the " + s.getName() + " --> ");
@@ -33,6 +43,12 @@ public class PlayerPerson extends Player {
 
 		}
 		
+		sn = b.setShip(s, personHidden.getHidden());
+		int endRow = Integer.valueOf(sn)/10;
+		int endCol = Integer.valueOf(sn)%10;
+		System.out.println(endRow);
+		
+		/**
 		System.out.print("Please choose the direction for the " + s.getName() + " (up, down, left, or right) --> ");
 		String dir = getValidDirection();
 		
@@ -42,11 +58,40 @@ public class PlayerPerson extends Player {
 			System.out.print("Pease enter another direction --> ");
 			dir = getValidDirection();
 		}
+		*/
+		String dir = "";
+		System.out.println("---");
+		System.out.println(row - endRow - 1);
+		System.out.println(endRow - row - 1);
+		System.out.println(endCol - col - 1);
+		System.out.println(col - endCol - 1);
 		
-		s.setShipCoordinate(col, row, dir);
+		if (row - endRow - 1== -1 * s.getLength()) {
+			dir = "down";
+		}
+		if (endRow - row - 1 == -1 * s.getLength()) {
+			dir = "up";
+		}
+		if (endCol - col + 1== s.getLength()) {
+			dir = "right";
+		}
+		if (col - endCol + 1 == s.getLength()) {
+			dir = "left";
+		}
+		System.out.println(dir);
+		System.out.println("dninbdingbidgnbdignb");
+		
+		if (dir.contentEquals("")) {
+			b.sendErrorMessage("You cannot place a ship there. The ship must have a length of " + s.getLength());
+			setOneShip(s);
+			return;
+		}
+		
+		s.setShipCoordinate(row, col, dir);
 		setShipHidden(s.getCoordinates(), s.getID());
 		Board.printBoard(personHidden.getHidden());
-
+		System.out.println(row);
+		System.out.println(endRow);
 		
 	}
 	
