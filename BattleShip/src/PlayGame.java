@@ -36,7 +36,7 @@ public class PlayGame {
 		c.printVisible();
 		System.out.println();
 		
-		while(!c.getHidden().hasWon() || !p.getHidden().hasWon()) {
+		while(!c.getHidden().hasWon() && !p.getHidden().hasWon()) {
 			onePersonTurn();
 			oneBotTurn();
 		}

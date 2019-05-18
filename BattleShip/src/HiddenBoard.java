@@ -35,7 +35,7 @@ public class HiddenBoard extends Board{
 		
 		for(int row = 0; row < hidden.length; row++) {
 			for(int col = 0; col < hidden[row].length; col++) {
-				if(!hidden[row][col].equals(EMPTY) || !hidden[row][col].equals(HIT)) {
+				if(!hidden[row][col].equals(EMPTY) || !hidden[row][col].equals(HIT) || !hidden[row][col].equals(MISS)) {
 					won = false;
 				}
 			}
