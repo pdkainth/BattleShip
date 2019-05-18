@@ -31,7 +31,7 @@ public class GUI {
 		
 		GUI.setLayout(new GridLayout(10,10));
 		
-		GUI.setSize(500, 500);
+		GUI.setSize(1000, 1000);
 		GUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GUI.setVisible(true);
 
