@@ -13,7 +13,7 @@ public class ComputerPerson extends Player {
 	public ComputerPerson(String name) {
 		super(name);
 		setShips();
-		Board.printBoard(personHidden.getHidden());
+//		Board.printBoard(personHidden.getHidden());
 
 	}
 	
@@ -35,7 +35,7 @@ public class ComputerPerson extends Player {
 			dir = getValidDirection();
 		}
 		
-		System.out.println("Row: " + row + " , Col: " + col + ", Dir: " + dir);
+//		System.out.println("Row: " + row + " , Col: " + col + ", Dir: " + dir);
 		s.setShipCoordinate(col, row, dir);
 		setShipHidden(s.getCoordinates(), s.getID());
 
@@ -43,7 +43,6 @@ public class ComputerPerson extends Player {
 	}
 	
 	public void setShips() {
-		Board.printBoard(personHidden.getHidden());
 		setOneShip(carrier);
 		setOneShip(submarine);
 		setOneShip(destroyer);
@@ -85,7 +84,7 @@ public class ComputerPerson extends Player {
 //		return (testChar - 'a');
 //	}
 	
-	private int getValid() {
+	public int getValid() {
 
 		int test = r.nextInt(10);
 		
@@ -136,14 +135,21 @@ public class ComputerPerson extends Player {
 	
 	}
 	
-	public Board getVisible() {
+	public VisibleBoard getVisible() {
 		return personVisible;
 	}
 	
-	public Board getHidden() {
+	public HiddenBoard getHidden() {
 		return personHidden;
 	}
 	
+	public void printHidden() {
+		Board.printBoard(personHidden.getHidden());
+	}
+	
+	public void printVisible() {
+		Board.printBoard(personVisible.getBoard());
+	}
 	
 	
 	

@@ -22,7 +22,7 @@ public class PlayerPerson extends Player {
 		System.out.print("Enter the starting row for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
 		int col = getValid();
 		
-		while(!(personHidden.isValidStarting(row, col))) {
+		while(!(personHidden.isValidStarting(col, row))) {
 			System.out.println("Invalid starting coordinate, this spot has already been taken.");
 
 			System.out.print("Please enter another starting column for the " + s.getName() + " --> ");
@@ -142,13 +142,22 @@ public class PlayerPerson extends Player {
 	
 	}
 	
-	public Board getVisible() {
+	public VisibleBoard getVisible() {
 		return personVisible;
 	}
 	
-	public Board getHidden() {
+	public HiddenBoard getHidden() {
 		return personHidden;
 	}
+	
+	public void printHidden() {
+		Board.printBoard(personHidden.getHidden());
+	}
+	
+	public void printVisible() {
+		Board.printBoard(personVisible.getBoard());
+	}
+
 	
 	
 	

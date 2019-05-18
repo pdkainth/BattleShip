@@ -4,6 +4,7 @@ public class HiddenBoard extends Board{
 	private String[][] hidden = new String[getLength()][getLength()];
 	private final String EMPTY = "-";
 	private final String HIT = "X";
+	private final String MISS = "O";
 	
 	public HiddenBoard() {
 		for(int row = 0; row < hidden.length; row++) {
@@ -13,6 +14,14 @@ public class HiddenBoard extends Board{
 		}
 	}
 	
+	public void hit(int r, int c) {
+		hidden[r][c] = HIT;
+	}
+
+	public void miss(int r, int c) {
+		hidden[r][c] = MISS;
+	}
+
 	public void setHiddenBoard(int r, int c, String id) {
 		hidden[r][c] = id;
 	}
@@ -122,6 +131,15 @@ public class HiddenBoard extends Board{
 				
 
 		}
+	}
+	
+	public boolean didHit(int r, int c) {
+		
+		if(hidden[r][c].equals(EMPTY)) {
+			return false;
+		}
+		
+		return true;
 	}
 
 
