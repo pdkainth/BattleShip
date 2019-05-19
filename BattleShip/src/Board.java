@@ -1,5 +1,9 @@
 import java.util.Random;
 
+/**
+ * @author 
+ *
+ */
 public class Board {
 
 //	private final int SIDE = 10;
@@ -9,6 +13,9 @@ public class Board {
 //	private final String HIT = "X";
 //	private final String MISS = "O";
 
+	/**
+	 * 
+	 */
 	private final int LENGTH = 10;
 	
 
@@ -22,10 +29,17 @@ public class Board {
 //		}
 //	}
 	
+	/**
+	 * 
+	 */
 	public Board() {
 		
 	}
 	
+	
+	/**
+	 * @param board
+	 */
 	public static void printBoard(String[][] board) {
 		System.out.print("  ");
 		for(int row = 0; row < board.length; row++) {
@@ -42,6 +56,9 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	public int getLength() {
 		return LENGTH;
 	}

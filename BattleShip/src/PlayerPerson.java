@@ -10,11 +10,17 @@ public class PlayerPerson extends Player {
 	private Ships destroyer = new Ships("Destroyer", 3);
 	private Scanner in = new Scanner(System.in);
 	
+	/**
+	 * @param name
+	 */
 	public PlayerPerson(String name) {
 		super(name);
 		setShips();
 	}
 	
+	/**
+	 * @param s
+	 */
 	public void setOneShip(Ships s) {
 		System.out.print("Enter the starting column for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
 		int row = getValid();
@@ -50,6 +56,9 @@ public class PlayerPerson extends Player {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see Player#setShips()
+	 */
 	public void setShips() {
 		Board.printBoard(personHidden.getHidden());
 		System.out.println();
@@ -61,6 +70,10 @@ public class PlayerPerson extends Player {
 		
 	}
 	
+	/**
+	 * @param coord
+	 * @param id
+	 */
 	private void setShipHidden(int[][] coord, String id) {
 		for(int row = 0; row < coord.length; row++) {
 			personHidden.setHiddenBoard(coord[row][0], coord[row][1], id);
@@ -96,6 +109,9 @@ public class PlayerPerson extends Player {
 //		return (testChar - 'a');
 //	}
 	
+	/**
+	 * @return
+	 */
 	private int getValid() {
 		int test = in.nextInt();
 		boolean valid = true;
@@ -122,6 +138,9 @@ public class PlayerPerson extends Player {
 		return test;
 	}
 	
+	/**
+	 * @return
+	 */
 	private String getValidDirection() {
 		String dir = in.next();
 		dir = dir.toLowerCase();
@@ -142,22 +161,37 @@ public class PlayerPerson extends Player {
 	
 	}
 	
+	/**
+	 * @return
+	 */
 	public VisibleBoard getVisible() {
 		return personVisible;
 	}
 	
+	/**
+	 * @return
+	 */
 	public HiddenBoard getHidden() {
 		return personHidden;
 	}
 	
+	/**
+	 * 
+	 */
 	public void printHidden() {
 		Board.printBoard(personHidden.getHidden());
 	}
 	
+	/**
+	 * 
+	 */
 	public void printVisible() {
 		Board.printBoard(personVisible.getBoard());
 	}
 
+	/**
+	 * @return
+	 */
 	public String[][] getHiddenBoard(){
 		return personHidden.getHidden();
 	}

@@ -25,6 +25,9 @@ public class GUI {
 	int startX = -1;
 	int startY = -1;
 	
+	/**
+	 * 
+	 */
 	public GUI() {
 
 		GUI = new JFrame("Battleship");
@@ -39,6 +42,9 @@ public class GUI {
 		
 	}
 	
+	/**
+	 * @return
+	 */
 	public String preQuestions() {
 		
 		JLabel label = new JLabel("Welcome to Battleship!");
@@ -76,6 +82,11 @@ public class GUI {
 		
 	}
 	
+	/**
+	 * @param s
+	 * @param field
+	 * @return
+	 */
 	public String setShip(Ships s, String[][] field) {
 		startX = -1;
 		startY = -1;
@@ -235,6 +246,11 @@ public class GUI {
 	
 	
 	
+	/**
+	 * @param field
+	 * @param compField
+	 * @return
+	 */
 	public String printBoard(String[][] field, String[][] compField) {
 		
 		run = false;
@@ -359,6 +375,9 @@ public class GUI {
 		
 	}
 
+	/**
+	 * @param s
+	 */
 	public void sendErrorMessage(String s) {
 		JOptionPane.showMessageDialog(GUI, s);
 	}

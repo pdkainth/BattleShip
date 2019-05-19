@@ -2,16 +2,34 @@ import java.util.Scanner;
 
 public class PlayGame {
 	
+	/**
+	 * 
+	 */
 	private PlayerPerson p;
+	/**
+	 * 
+	 */
 	private Scanner in = new Scanner(System.in);
+	/**
+	 * 
+	 */
 	private ComputerPerson c;
+	/**
+	 * 
+	 */
 	private int turn = 0;
 	
+	/**
+	 * 
+	 */
 	public PlayGame() {
 		preGame();
 		currentGame();
 	}
 	
+	/**
+	 * 
+	 */
 	public void preGame() {
 		System.out.println("Welcome to Battleship!");
 		System.out.println();
@@ -27,6 +45,9 @@ public class PlayGame {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void currentGame() {
 		System.out.println("Your board: ");
 		p.printHidden();
@@ -49,6 +70,9 @@ public class PlayGame {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	private void onePersonTurn() {
 		turn++;
 		System.out.println("Where do you want to strike?");
@@ -81,6 +105,9 @@ public class PlayGame {
 		System.out.println();
 	}
 	
+	/**
+	 * 
+	 */
 	private void oneBotTurn() {
 		turn++;
 		int potentialCol = c.getValid();
@@ -114,6 +141,9 @@ public class PlayGame {
 
 	}
 	
+	/**
+	 * @return
+	 */
 	private int getRow() {
 		System.out.print("Row --> ");
 		int potentialRow = in.nextInt();
@@ -126,6 +156,9 @@ public class PlayGame {
 		return potentialRow;
 	}
 	
+	/**
+	 * @return
+	 */
 	private int getCol() {
 		System.out.print("Column --> ");
 		int potentialCol = in.nextInt();
@@ -139,6 +172,9 @@ public class PlayGame {
 	}
 	
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		PlayGame pg = new PlayGame();
 	}

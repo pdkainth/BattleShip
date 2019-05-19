@@ -6,6 +6,9 @@ public class HiddenBoard extends Board{
 	private final String HIT = "X";
 	private final String MISS = "O";
 	
+	/**
+	 * 
+	 */
 	public HiddenBoard() {
 		for(int row = 0; row < hidden.length; row++) {
 			for(int col = 0; col < hidden[row].length; col++) {
@@ -14,22 +17,41 @@ public class HiddenBoard extends Board{
 		}
 	}
 	
+	/**
+	 * @param r
+	 * @param c
+	 */
 	public void hit(int r, int c) {
 		hidden[r][c] = HIT;
 	}
 
+	/**
+	 * @param r
+	 * @param c
+	 */
 	public void miss(int r, int c) {
 		hidden[r][c] = MISS;
 	}
 
+	/**
+	 * @param r
+	 * @param c
+	 * @param id
+	 */
 	public void setHiddenBoard(int r, int c, String id) {
 		hidden[r][c] = id;
 	}
 	
+	/**
+	 * @return
+	 */
 	public String[][] getHidden(){
 		return hidden;
 	}
 	
+	/**
+	 * @return
+	 */
 	public boolean hasWon() {
 		/**
 		boolean won = true;
@@ -59,6 +81,11 @@ public class HiddenBoard extends Board{
 		return false;
 	}
 	
+	/**
+	 * @param r
+	 * @param c
+	 * @return
+	 */
 	public boolean isValidStarting(int r, int c) {
 		if(hidden[r][c].equals(EMPTY)) {
 			return true;
@@ -67,6 +94,13 @@ public class HiddenBoard extends Board{
 		return false;
 	}
 	
+	/**
+	 * @param c
+	 * @param r
+	 * @param length
+	 * @param dir
+	 * @return
+	 */
 	public boolean isValidDirection(int c, int r, int length, String dir) {
 		String direction = dir.toLowerCase();
 		int dirCase = 0;
@@ -147,6 +181,11 @@ public class HiddenBoard extends Board{
 		}
 	}
 	
+	/**
+	 * @param r
+	 * @param c
+	 * @return
+	 */
 	public boolean didHit(int r, int c) {
 		
 		if(hidden[r][c].equals(EMPTY)) {
