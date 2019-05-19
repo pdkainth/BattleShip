@@ -30,21 +30,8 @@ public class HiddenBoard extends Board{
 		return hidden;
 	}
 	
-	public boolean hasWon() {
-		/**
-		boolean won = true;
-		
-		for(int row = 0; row < hidden.length; row++) {
-			for(int col = 0; col < hidden[row].length; col++) {
-				if(!hidden[row][col].equals(EMPTY) || !hidden[row][col].equals(HIT) || !hidden[row][col].equals(MISS)) {
-					won = false;
-				}
-			}
-		}
-		
-		return won;
-		*/
-		
+	public boolean hasLost() {
+				
 		int counter = 0;
 		for (int row = 0; row < hidden.length; row++) {
 			for (int col = 0; col < hidden[row].length; col++) {
@@ -53,6 +40,7 @@ public class HiddenBoard extends Board{
 				}
 			}
 		}
+		System.out.println(counter);
 		if (counter == 12) {
 			return true;
 		}

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Random.*;
 
@@ -5,15 +7,17 @@ public class ComputerPerson extends Player {
 	
 	private VisibleBoard personVisible = new VisibleBoard();
 	private HiddenBoard personHidden = new HiddenBoard();
-	private Ships carrier = new Ships("Carrier", 5);
-	private Ships submarine = new Ships("Submarine", 4);
-	private Ships destroyer = new Ships("Destroyer", 3);
+	private ArrayList <Ships> shipList = new ArrayList <Ships>();
+
 	private Random r = new Random();
 	
 	public ComputerPerson(String name) {
 		super(name);
+		shipList.add(new Ships("Carrier", 5));
+		shipList.add(new Ships("Submarine", 4));
+		shipList.add(new Ships("Destroyer", 3));
+
 		setShips();
-//		Board.printBoard(personHidden.getHidden());
 
 	}
 	
@@ -35,17 +39,20 @@ public class ComputerPerson extends Player {
 			dir = getValidDirection();
 		}
 		
-//		System.out.println("Row: " + row + " , Col: " + col + ", Dir: " + dir);
-		s.setShipCoordinate(col, row, dir);
+		s.setShipCoordinate(col, row, dir, s.getLength() - 1);
 		setShipHidden(s.getCoordinates(), s.getID());
 
 		
 	}
 	
 	public void setShips() {
-		setOneShip(carrier);
-		setOneShip(submarine);
-		setOneShip(destroyer);
+		Iterator i = shipList.iterator();
+		
+		while(i.hasNext()) {
+			System.out.println();
+			setOneShip((Ships)i.next());
+			
+		}
 		
 	}
 	
@@ -54,35 +61,6 @@ public class ComputerPerson extends Player {
 			personHidden.setHiddenBoard(coord[row][0], coord[row][1], id);
 		}
 	}
-	
-//	private int getValidY() {
-//		String test = in.next();
-//		test = test.toLowerCase();
-//		boolean valid = true;
-//		
-//		if(test.compareTo("a") < 0 || test.compareTo("j") > 0) {
-//			valid = false;
-//		} else {
-//			valid = true;
-//		}
-//		
-//		String test1 = test;
-//		while(!valid) {
-//			System.out.print("Invalid coordinate, enter a valid coordinate from a to j--> ");
-//			
-//			test1 = in.next();
-//			if(test1.compareTo("a") < 0 || test1.compareTo("j") > 0) {
-//				valid = false;
-//			} else {
-//				valid = true;
-//			}
-//
-//		}
-//		
-//		char testChar = test1.charAt(0);
-//		
-//		return (testChar - 'a');
-//	}
 	
 	public int getValid() {
 

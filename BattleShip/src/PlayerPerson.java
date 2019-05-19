@@ -1,17 +1,19 @@
-import java.util.Scanner;
+import java.util.*;
 
 
 public class PlayerPerson extends Player {
 	
 	private VisibleBoard personVisible = new VisibleBoard();
 	private HiddenBoard personHidden = new HiddenBoard();
-	private Ships carrier = new Ships("Carrier", 5);
-	private Ships submarine = new Ships("Submarine", 4);
-	private Ships destroyer = new Ships("Destroyer", 3);
+	private ArrayList <Ships> shipList = new ArrayList <Ships>();
+	
 	private Scanner in = new Scanner(System.in);
 	
 	public PlayerPerson(String name) {
 		super(name);
+		shipList.add(new Ships("Carrier", 5));
+		shipList.add(new Ships("Submarine", 4));
+		shipList.add(new Ships("Destroyer", 3));
 		setShips();
 	}
 	
@@ -43,7 +45,7 @@ public class PlayerPerson extends Player {
 			dir = getValidDirection();
 		}
 		
-		s.setShipCoordinate(col, row, dir);
+		s.setShipCoordinate(col, row, dir, s.getLength() - 1);
 		setShipHidden(s.getCoordinates(), s.getID());
 		Board.printBoard(personHidden.getHidden());
 
@@ -52,12 +54,13 @@ public class PlayerPerson extends Player {
 	
 	public void setShips() {
 		Board.printBoard(personHidden.getHidden());
-		System.out.println();
-		setOneShip(carrier);
-		System.out.println();
-		setOneShip(submarine);
-		System.out.println();
-		setOneShip(destroyer);
+		Iterator i = shipList.iterator();
+		
+		while(i.hasNext()) {
+			System.out.println();
+			setOneShip((Ships)i.next());
+			
+		}
 		
 	}
 	
@@ -66,36 +69,7 @@ public class PlayerPerson extends Player {
 			personHidden.setHiddenBoard(coord[row][0], coord[row][1], id);
 		}
 	}
-	
-//	private int getValidY() {
-//		String test = in.next();
-//		test = test.toLowerCase();
-//		boolean valid = true;
-//		
-//		if(test.compareTo("a") < 0 || test.compareTo("j") > 0) {
-//			valid = false;
-//		} else {
-//			valid = true;
-//		}
-//		
-//		String test1 = test;
-//		while(!valid) {
-//			System.out.print("Invalid coordinate, enter a valid coordinate from a to j--> ");
-//			
-//			test1 = in.next();
-//			if(test1.compareTo("a") < 0 || test1.compareTo("j") > 0) {
-//				valid = false;
-//			} else {
-//				valid = true;
-//			}
-//
-//		}
-//		
-//		char testChar = test1.charAt(0);
-//		
-//		return (testChar - 'a');
-//	}
-	
+		
 	private int getValid() {
 		int test = in.nextInt();
 		boolean valid = true;

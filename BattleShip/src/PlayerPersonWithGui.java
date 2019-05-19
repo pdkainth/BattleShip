@@ -25,13 +25,6 @@ public class PlayerPersonWithGui extends Player {
 		int col = Integer.valueOf(sn)%10;
 		System.out.println("Stage 1");
 		System.out.println(row);
-		/**
-		System.out.print("Enter the starting column for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
-		int row = getValid();
-		
-		System.out.print("Enter the starting row for the " +  s.getName() + " ( " + s.getLength() + " units long) -- > ");
-		int col = getValid();
-		*/
 		while(!(personHidden.isValidStarting(row, col))) {
 			System.out.println("Invalid starting coordinate, this spot has already been taken.");
 
@@ -48,17 +41,6 @@ public class PlayerPersonWithGui extends Player {
 		int endCol = Integer.valueOf(sn)%10;
 		System.out.println(endRow);
 		
-		/**
-		System.out.print("Please choose the direction for the " + s.getName() + " (up, down, left, or right) --> ");
-		String dir = getValidDirection();
-		
-		while(!(personHidden.isValidDirection(row, col, s.getLength(), dir))) {
-			System.out.println("Invalid direction, ship will not fit.");
-			
-			System.out.print("Pease enter another direction --> ");
-			dir = getValidDirection();
-		}
-		*/
 		String dir = "";
 		System.out.println("---");
 		System.out.println(row - endRow - 1);
@@ -87,7 +69,7 @@ public class PlayerPersonWithGui extends Player {
 			return;
 		}
 		
-		s.setShipCoordinate(row, col, dir);
+		s.setShipCoordinate(row, col, dir, s.getLength() - 1);
 		setShipHidden(s.getCoordinates(), s.getID());
 		Board.printBoard(personHidden.getHidden());
 		System.out.println(row);
@@ -112,34 +94,6 @@ public class PlayerPersonWithGui extends Player {
 		}
 	}
 	
-//	private int getValidY() {
-//		String test = in.next();
-//		test = test.toLowerCase();
-//		boolean valid = true;
-//		
-//		if(test.compareTo("a") < 0 || test.compareTo("j") > 0) {
-//			valid = false;
-//		} else {
-//			valid = true;
-//		}
-//		
-//		String test1 = test;
-//		while(!valid) {
-//			System.out.print("Invalid coordinate, enter a valid coordinate from a to j--> ");
-//			
-//			test1 = in.next();
-//			if(test1.compareTo("a") < 0 || test1.compareTo("j") > 0) {
-//				valid = false;
-//			} else {
-//				valid = true;
-//			}
-//
-//		}
-//		
-//		char testChar = test1.charAt(0);
-//		
-//		return (testChar - 'a');
-//	}
 	
 	private int getValid() {
 		int test = in.nextInt();

@@ -155,82 +155,6 @@ public class GUI {
 		
 		
 		return startX + "" + startY;
-		/**
-		
-		
-		run = false;
-		
-		GUI.getContentPane().removeAll();
-		GUI.repaint();
-		z.setLayout(new GridLayout(10,10));
-		z.setSize(500,500);
-		z.setBackground(new Color(125, 200, 225));
-		z.setBorder(BorderFactory.createLineBorder(new Color(25, 150, 200)));
-		for (int i = 0; i < 10; i++) {
-			for (int k = 0; k < 10; k++) {
-				JButton button;
-				if (i == startX && k == startY) {
-					button = new JButton(s.getName());
-				}else {
-					button = new JButton(" ");
-				}
-				button.setPreferredSize(new Dimension(50, 50));
-				//c.gridx = i;
-				//c.gridy = k;
-				z.add(button);
-				
-				int x = i;
-				int y = k;
-				
-				
-				button.addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent ae) {
-						startX = x;
-						startY = y;
-						run = true;
-						System.out.print(startX + " " + startY);
-					}
-				});
-				
-				
-			}
-
-			
-		}
-		
-		GUI.setVisible(true);
-		*/
-		/**
-		run = false;
-		label = new JLabel("Please click the starting and ending point of your " + s.getName() + " ship. It is " + s.getLength() + " squares long");
-		
-		
-		
-		for (int i = 0; i < 10; i++) {
-			for (int k = 0; k < 10; k++) {
-				JButton button = new JButton("-");
-				GUI.add(button);
-				int x = i;
-				int y = k;
-				button.addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent ae) {
-						endX = x;
-						endY = y;
-						run = true;
-						
-					}
-				});
-			}
-		}
-		
-		while (!run) {
-			System.out.print("");
-		}
-		
-		System.out.print(startX + startY + endX + endY);
-		
-		
-		*/
 	}
 	
 	
@@ -241,17 +165,11 @@ public class GUI {
 		GUI.getContentPane().removeAll();
 		GUI.repaint();
 		GUI.setLayout(null);
-		//JPanel grid = new JPanel();
-		//grid.setLayout(new GridLayout(10,10));
 		JPanel z = new JPanel();
 		z.setLayout(new GridLayout(10,10));
 		z.setSize(500,500);
 		z.setBackground(new Color(125, 200, 225));
 		z.setBorder(BorderFactory.createLineBorder(new Color(25, 150, 200)));
-		//z.setLayout(new GridLayout(10, 1));
-		//z.setLayout(new BoxLayout(z, BoxLayout.CENTER));
-		//z.setLayout(new GridLayout(10,10));
-		
 	    
 		for (int i = 0; i < 10; i++) {
 			for (int k = 0; k < 10; k++) {
@@ -264,8 +182,6 @@ public class GUI {
 				
 				
 				button.setPreferredSize(new Dimension(50, 50));
-				//c.gridx = i;
-				//c.gridy = k;
 				z.add(button);
 				
 				int x = i;
@@ -289,10 +205,6 @@ public class GUI {
 		c.setSize(500,500);
 		c.setBackground(new Color(225, 200, 125));
 		c.setBorder(BorderFactory.createLineBorder(new Color(25, 150, 200)));
-		//z.setLayout(new GridLayout(10, 1));
-		//z.setLayout(new BoxLayout(z, BoxLayout.CENTER));
-		//z.setLayout(new GridLayout(10,10));
-		
 	    
 		for (int i = 0; i < 10; i++) {
 			for (int k = 0; k < 10; k++) {
@@ -304,8 +216,6 @@ public class GUI {
 				}
 				
 				button.setPreferredSize(new Dimension(50, 50));
-				//c.gridx = i;
-				//c.gridy = k;
 				c.add(button);
 				
 				int x = i;
@@ -341,8 +251,6 @@ public class GUI {
 		z.setBounds(0, 0, 500, 500);
 		c.setBounds(500, 0, 500, 500);
 
-		//GUI.add(z, BorderLayout.WEST);
-		//GUI.add(c, BorderLayout.EAST);
 		
 		GUI.add(yours);
 		GUI.add(computers);

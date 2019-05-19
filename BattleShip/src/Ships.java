@@ -10,35 +10,37 @@ public class Ships {
 		coordinates = new int[length][2];
 	}
 	
-	public void setShipCoordinate(int startRow, int startCol, String dir) {
+	public void setShipCoordinate(int startRow, int startCol, String dir, int lengthRemaining) {
 		coordinates[0][0] = startRow;
 		coordinates[0][1] = startCol;
 
-		for(int i = 1; i < length; i++) {
-			
-			if(dir.equals("up")) {
-				coordinates[i][0] = coordinates[0][0] - i;
-				coordinates[i][1] = coordinates[0][1];
-			}
-			
-			if(dir.equals("down")) {
-				coordinates[i][0] = coordinates[0][0] + i;
-				coordinates[i][1] = coordinates[0][1];
-			}
-			
-			if(dir.equals("left")) {
-				coordinates[i][0] = coordinates[0][0];
-				coordinates[i][1] = coordinates[0][1] - i;
-			}
-			
-			if(dir.equals("right")) {
-				coordinates[i][0] = coordinates[0][0];
-				coordinates[i][1] = coordinates[0][1] + i;
-			}
-			
-
-
+		if(lengthRemaining == 0) {
+			return;
 		}
+		
+		if(dir.equals("up")) {
+			coordinates[lengthRemaining][0] = coordinates[0][0] - lengthRemaining;
+			coordinates[lengthRemaining][1] = coordinates[0][1];
+		}
+		
+		if(dir.equals("down")) {
+			coordinates[lengthRemaining][0] = coordinates[0][0] + lengthRemaining;
+			coordinates[lengthRemaining][1] = coordinates[0][1];
+		}
+		
+		if(dir.equals("left")) {
+			coordinates[lengthRemaining][0] = coordinates[0][0];
+			coordinates[lengthRemaining][1] = coordinates[0][1] - lengthRemaining;
+		}
+		
+		if(dir.equals("right")) {
+			coordinates[lengthRemaining][0] = coordinates[0][0];
+			coordinates[lengthRemaining][1] = coordinates[0][1] + lengthRemaining;
+		}
+		
+		setShipCoordinate(startRow, startCol, dir, lengthRemaining - 1);
+		
+		
 	}
 	
 	public boolean isValid(String[][] board, int r, int c) {

@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class PlayGame {
@@ -36,12 +37,16 @@ public class PlayGame {
 		c.printVisible();
 		System.out.println();
 		
-		while(!c.getHidden().hasWon() && !p.getHidden().hasWon()) {
-			onePersonTurn();
-			oneBotTurn();
+		while(!c.getHidden().hasLost() && !p.getHidden().hasLost()) {
+			if(turn % 2 == 0) {
+				onePersonTurn();
+				
+			} else {
+				oneBotTurn();
+			}
 		}
 		
-		if(turn % 2 == 1) {
+		if(p.getHidden().hasLost() == false) {
 			System.out.println("Congratulations, you've won!");
 		} else {
 			System.out.println("Better luck next time!");
