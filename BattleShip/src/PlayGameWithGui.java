@@ -10,12 +10,18 @@ public class PlayGameWithGui {
 	private static GUI g = new GUI();
 	
 	
+	/**
+	 * 
+	 */
 	public PlayGameWithGui() {
 		preGame();
 		currentGame();
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void preGame() {
 		
 		String name = g.preQuestions();
@@ -38,6 +44,9 @@ public class PlayGameWithGui {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void currentGame() {
 		
 		
@@ -68,6 +77,10 @@ public class PlayGameWithGui {
 		
 	}
 	
+	/**
+	 * @param potentialRow
+	 * @param potentialCol
+	 */
 	public void onePersonTurn(int potentialRow, int potentialCol) {
 		turn++;
 		//System.out.println("Where do you want to strike?");
@@ -104,6 +117,9 @@ public class PlayGameWithGui {
 		System.out.println();
 	}
 	
+	/**
+	 * 
+	 */
 	private void oneBotTurn() {
 		turn++;
 		int potentialCol = c.getValid();
@@ -137,6 +153,9 @@ public class PlayGameWithGui {
 
 	}
 	
+	/**
+	 * @return
+	 */
 	private int getRow() {
 		System.out.print("Row --> ");
 		int potentialRow = in.nextInt();
@@ -149,6 +168,9 @@ public class PlayGameWithGui {
 		return potentialRow;
 	}
 	
+	/**
+	 * @return
+	 */
 	private int getCol() {
 		System.out.print("Column --> ");
 		int potentialCol = in.nextInt();
@@ -162,6 +184,9 @@ public class PlayGameWithGui {
 	}
 	
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		PlayGameWithGui pg = new PlayGameWithGui();
 	}

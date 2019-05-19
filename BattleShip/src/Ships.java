@@ -4,12 +4,21 @@ public class Ships {
 	private String name;
 	private int[][] coordinates;
 	
+	/**
+	 * @param name
+	 * @param length
+	 */
 	public Ships(String name, int length) {
 		this.name = name;
 		this.length = length;
 		coordinates = new int[length][2];
 	}
 	
+	/**
+	 * @param startRow
+	 * @param startCol
+	 * @param dir
+	 */
 	public void setShipCoordinate(int startRow, int startCol, String dir) {
 		coordinates[0][0] = startRow;
 		coordinates[0][1] = startCol;
@@ -41,6 +50,12 @@ public class Ships {
 		}
 	}
 	
+	/**
+	 * @param board
+	 * @param r
+	 * @param c
+	 * @return
+	 */
 	public boolean isValid(String[][] board, int r, int c) {
 		if(board[r][c].equals("-")) {
 			return true;
@@ -49,18 +64,30 @@ public class Ships {
 		return false;
 	}
 	
+	/**
+	 * @return
+	 */
 	public int[][] getCoordinates(){
 		return coordinates;
 	}
 	
+	/**
+	 * @return
+	 */
 	public String getID() {
 		return name.charAt(0) + "";
 	}
 	
+	/**
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * @return
+	 */
 	public int getLength() {
 		return length;
 	}
