@@ -11,11 +11,16 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.awt.Image;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.*;
+ImageIcon boat = new ImageIcon("src/Boat.png");
+ImageIcon fire = new ImageIcon("src/fire.png");
+ImageIcon splash = new ImageIcon("src/splash.png");
 
 
 public class GUI {
@@ -192,7 +197,15 @@ public class GUI {
 				JButton button;
 				if (field[i][k] == "-") {
 					button = new JButton(" ");
-				}else {
+				}else if (field[i][k].equals("X")){
+					button = new JButton(fire);					
+				}
+				else if (field[i][k].equals("D") || field[i][k].equals("C") || field[i][k].equals("S")) {
+					button = new JButton(boat);
+				}else if (field[i][k].equals("O")) {
+					button = new JButton(splash);
+				}
+				else {
 					button = new JButton(field[i][k]);
 				}
 				
@@ -225,9 +238,16 @@ public class GUI {
 		for (int i = 0; i < 10; i++) {
 			for (int k = 0; k < 10; k++) {
 				JButton button;
-				if (compField[i][k] == "-") {
+				if (compField[i][k].equals("-")) {
 					button = new JButton(" ");
-				}else {
+				}else if (compField[i][k].equals("X")) {
+					button = new JButton(fire);
+				}else if (compField[i][k].equals("D") || field[i][k].equals("S") || field[i][k].equals("C")) {
+					button = new JButton(boat);
+				}else if (compField[i][k].equals("O")) {
+					button = new JButton(splash);
+				}
+				else {
 					button = new JButton(compField[i][k]);
 				}
 				
